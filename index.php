@@ -1,12 +1,46 @@
+<?php
+require_once __DIR__ .'/partials/scripts/get-stanze.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+<?php //head
+require_once __DIR__ .'/partials/templates/head.php'; ?>
+
 <body>
+
+    <main class="container">
+        <h1>Archivio stanze</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Room number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php // Loop DB records 
+                    if(!empty($stanze)) {
+                        foreach($stanze as $stanza) { ?>
+                            <tr>
+                                <td><?php echo $stanza['id']; ?></td>
+                                <td><?php echo $stanza['room_number']; ?></td>
+                                <td>
+                                    <a class="text-success" 
+                                        href="./show.php?id=<?php echo $stanza['id']; ?>">
+                                        View 
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php }
+                    }
+                ?>
+            </tbody>
+        </table>
+    </main>
     
 </body>
 </html>
